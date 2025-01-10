@@ -1,30 +1,34 @@
 # Online Python - IDE, Editor, Compiler, Interpreter
-from gestion import gestion_de_productos
+from gestion import gestion_de_productos, registrar_venta
 
-valor_ex_1 = {"nombre": "producto 1", "precio" : 1000, "disponible" : 5, "minimo": 3}
-valor_ex_2 = {"nombre": "producto 2", "precio" : 1500, "disponible" : 3, "minimo": 2}
+valor_ex_1 = {"nombre": "producto 1", "precio" : 1000, "disponible" : 2, "minimo": 3, "ventas":0}
+valor_ex_2 = {"nombre": "producto 2", "precio" : 1500, "disponible" : 3, "minimo": 2, "ventas":0}
 registros = {
   1 : valor_ex_1,
   2 : valor_ex_2
 }
 
+ventas_registradas = []
+
 detalle_largo = {
-    "codigo": 6, "nombre": 30, "precio": 8, "disponible":10, "minimo":12
+    "codigo": 6, "nombre": 30, "precio": 8, "disponible":10, "minimo":12, "ventas":10
 }
 
 cabecero = {
-    "Código": 6, "Nombre": 30, "Precio": 8, "Existencia":10, "Mínimo stock":12
+    "Código": 6, "Nombre": 30, "Precio": 8, "Existencia":10, "Mínimo stock":12, "Ventas":10
 }
 
 def menu():
     while True:
-        print("Menú, presione tecla para avanzar")
+        print("\n--- Menú Principal ---")
         print("1. Gestión de productos")
         print("2. Lista de productos")
         print("3. Búsqueda de productos")
-        print("4. Generar reporte")
+        print("4. Control de Stock")
+        print("5. Realizar venta")
+        print("6. Generar reporte")
         print("0. Salir")
-        seleccion = input("Escribe una opción: ")
+        seleccion = input("Selecciona una opción (0-6): ")
 
         if seleccion == "1":
             gestion_de_productos(registros)
@@ -32,11 +36,29 @@ def menu():
             lista_de_productos()
         elif seleccion == "3":
             busqueda_de_productos()
+        elif seleccion == "4":
+            control_stock()
+        elif seleccion == "5":
+            registrar_venta(registros, ventas_registradas)
         elif seleccion == "0":
             print("\nSaliendo")
             break
         else:
             print("\nOpción no válida. Por favor, intenta de nuevo.")
+
+
+def control_stock():
+    print("\n--- Control de Stock ---")
+    alerta = False
+    productos = listar_productos(registros)
+    for codigo, fila in productos:
+        if fila["disponible"] < fila["minimo"]:
+            print(f"¡ALERTA! El producto '{fila['nombre']}' "
+                  f"(Código {codigo}) tiene stock bajo el mínimo de {fila['minimo']}: {fila['disponible']}")
+            alerta = True
+
+    if not alerta:
+        print(f"No hay productos con stock menor al mínimo.")
 
 def lista_de_productos():
     print("Lista de productos")
