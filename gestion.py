@@ -12,7 +12,11 @@ def gestion_de_productos(data_ex):
                 precio = int(input("Inserte valor numérico del precio del producto "))
                 disponible = int(input("Inserte valor numérico de la cantidad disponible del producto "))
                 minimo = int(input("Inserte valor numérico del monto mínimo a disponer del producto "))
-                valor_add = {"nombre": nombre, "precio": precio, "disponible": disponible, "minimo": minimo}
+                valor_add = {"nombre": nombre,
+                             "precio": precio,
+                             "disponible": disponible,
+                             "minimo": minimo
+                             }
                 data_ex[codigo] = valor_add
                 print("\n--- Producto agregado ---")
         except:
@@ -27,7 +31,11 @@ def gestion_de_productos(data_ex):
                 precio = int(input("Inserte valor numérico del precio del producto "))
                 disponible = int(input("Inserte valor numérico de la cantidad disponible del producto "))
                 minimo = int(input("Inserte valor numérico del monto mínimo a disponer del producto "))
-                valor_add = {"nombre": nombre, "precio": precio, "disponible": disponible, "minimo": minimo}
+                valor_add = {"nombre": nombre,
+                             "precio": precio,
+                             "disponible": disponible,
+                             "minimo": minimo
+                             }
                 data_ex[codigo] = valor_add
                 print("\n--- Producto modificado ---")
             else:

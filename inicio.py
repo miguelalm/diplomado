@@ -1,8 +1,20 @@
 # Online Python - IDE, Editor, Compiler, Interpreter
 from gestion import gestion_de_productos, registrar_venta
 
-valor_ex_1 = {"nombre": "producto 1", "precio" : 1000, "disponible" : 2, "minimo": 3, "ventas":0}
-valor_ex_2 = {"nombre": "producto 2", "precio" : 1500, "disponible" : 3, "minimo": 2, "ventas":0}
+valor_ex_1 = {"nombre": "producto 1",
+              "precio" : 1000,
+              "disponible" : 2,
+              "minimo": 3,
+              "ventas":0
+              }
+
+valor_ex_2 = {"nombre": "producto 2",
+              "precio" : 1500,
+              "disponible" : 3,
+              "minimo": 2,
+              "ventas":0
+              }
+
 registros = {
   1 : valor_ex_1,
   2 : valor_ex_2
@@ -11,11 +23,21 @@ registros = {
 ventas_registradas = []
 
 detalle_largo = {
-    "codigo": 6, "nombre": 30, "precio": 8, "disponible":10, "minimo":12, "ventas":10
+    "codigo": 6,
+    "nombre": 30,
+    "precio": 8,
+    "disponible":10,
+    "minimo":12,
+    "ventas":10
 }
 
 cabecero = {
-    "Código": 6, "Nombre": 30, "Precio": 8, "Existencia":10, "Mínimo stock":12, "Ventas":10
+    "Código": 6,
+    "Nombre": 30,
+    "Precio": 8,
+    "Existencia":10,
+    "Mínimo stock":12,
+    "Ventas":10
 }
 
 def menu():
