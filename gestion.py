@@ -15,7 +15,8 @@ def gestion_de_productos(data_ex):
                 valor_add = {"nombre": nombre,
                              "precio": precio,
                              "disponible": disponible,
-                             "minimo": minimo
+                             "minimo": minimo,
+                             "ventas": 0
                              }
                 data_ex[codigo] = valor_add
                 print("\n--- Producto agregado ---")
@@ -27,22 +28,18 @@ def gestion_de_productos(data_ex):
         try:
             codigo = int(input("Inserte valor numérico del código del producto "))
             if codigo in data_ex:
-                nombre = str(input("Inserte nombre del producto "))
-                precio = int(input("Inserte valor numérico del precio del producto "))
-                disponible = int(input("Inserte valor numérico de la cantidad disponible del producto "))
-                minimo = int(input("Inserte valor numérico del monto mínimo a disponer del producto "))
-                valor_add = {"nombre": nombre,
-                             "precio": precio,
-                             "disponible": disponible,
-                             "minimo": minimo
-                             }
-                data_ex[codigo] = valor_add
+                data_ex[codigo]["nombre"] = str(input("Inserte nombre del producto (para no actualizar, deje en blanco) ")) or data_ex[codigo]["nombre"]
+                data_ex[codigo]["precio"] = int(input("Inserte valor numérico del precio del producto (para no actualizar, deje en blanco) ") or data_ex[codigo]["precio"])
+                data_ex[codigo]["disponible"] = int(input("Inserte valor numérico de la cantidad disponible del producto (para no actualizar, deje en blanco)") or data_ex[codigo]["disponible"])
+                data_ex[codigo]["minimo"] = int(input("Inserte valor numérico del monto mínimo a disponer del producto (para no actualizar, deje en blanco) ") or data_ex[codigo]["minimo"])
+
                 print("\n--- Producto modificado ---")
             else:
                 print("Producto no existe")
 
-        except:
-            print("\n--- Ocurrió un error, intenta de nuevo ---") #todo: test para probar errores
+
+        except Exception as error:
+            print("\n--- Ocurrió un error, intenta de nuevo --- ", error) #todo: test para probar errores
 
     def eliminar_producto():
         print("\n--- Eliminar producto ---")
