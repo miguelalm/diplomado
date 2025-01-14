@@ -5,28 +5,34 @@ def gestion_de_productos(data_ex):
         print("\n--- Agregar producto ---")
         try:
             codigo = int(input("Inserte valor numérico del código del producto "))
-            nombre = str(input("Inserte nombre del producto "))
-            precio = int(input("Inserte valor numérico del precio del producto "))
-            disponible = int(input("Inserte valor numérico de la cantidad disponible del producto "))
-            minimo = int(input("Inserte valor numérico del monto mínimo a disponer del producto "))
-            valor_add = {"nombre": nombre, "precio": precio, "disponible": disponible, "minimo": minimo}
-            data_ex[codigo] = valor_add
-            print("\n--- Producto agregado ---")
+            if codigo in data_ex:
+                print(f"Código {codigo} existe en inventario, si desea actualizarlo, utilice el módulo de Editar producto")
+            else:
+                nombre = str(input("Inserte nombre del producto "))
+                precio = int(input("Inserte valor numérico del precio del producto "))
+                disponible = int(input("Inserte valor numérico de la cantidad disponible del producto "))
+                minimo = int(input("Inserte valor numérico del monto mínimo a disponer del producto "))
+                valor_add = {"nombre": nombre, "precio": precio, "disponible": disponible, "minimo": minimo}
+                data_ex[codigo] = valor_add
+                print("\n--- Producto agregado ---")
         except:
             print("Ocurrió un error, intenta de nuevo") #todo: test para probar errores
 
     def editar_producto():
         print("\n--- Editar producto ---")
         try:
-            #numero = int(input("Inserte valor del número del producto "))
             codigo = int(input("Inserte valor numérico del código del producto "))
-            nombre = str(input("Inserte nombre del producto "))
-            precio = int(input("Inserte valor numérico del precio del producto "))
-            disponible = int(input("Inserte valor numérico de la cantidad disponible del producto "))
-            minimo = int(input("Inserte valor numérico del monto mínimo a disponer del producto "))
-            valor_add = {"nombre": nombre, "precio": precio, "disponible": disponible, "minimo": minimo}
-            data_ex[codigo] = valor_add
-            print("\n--- Producto modificado ---")
+            if codigo in data_ex:
+                nombre = str(input("Inserte nombre del producto "))
+                precio = int(input("Inserte valor numérico del precio del producto "))
+                disponible = int(input("Inserte valor numérico de la cantidad disponible del producto "))
+                minimo = int(input("Inserte valor numérico del monto mínimo a disponer del producto "))
+                valor_add = {"nombre": nombre, "precio": precio, "disponible": disponible, "minimo": minimo}
+                data_ex[codigo] = valor_add
+                print("\n--- Producto modificado ---")
+            else:
+                print("Producto no existe")
+
         except:
             print("\n--- Ocurrió un error, intenta de nuevo ---") #todo: test para probar errores
 
@@ -35,8 +41,11 @@ def gestion_de_productos(data_ex):
         try:
             #numero = int(input("Inserte valor del número del producto "))
             codigo = int(input("Inserte valor numérico del código del producto "))
-            del data_ex[codigo]
-            print("Producto eliminado")
+            if codigo in data_ex:
+                del data_ex[codigo]
+                print("Producto eliminado")
+            else:
+                print("Producto no existe")
         except:
             print("Ocurrió un error, intenta de nuevo") #todo: test para probar errores
 
@@ -66,8 +75,11 @@ def registrar_venta(data_ex, ventas_registradas):
     while True:
         try:
             codigo = int(input("Ingrese el código del producto que desea vender: "))
-            producto = data_ex[codigo]
-            break
+            if codigo in data_ex:
+                producto = data_ex[codigo]
+                break
+            else:
+                print("Producto no existe, busque otro")
         except Exception as error:
             print(f"Problema al buscar producto: ", error)
 
