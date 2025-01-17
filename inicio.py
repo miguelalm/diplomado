@@ -1,11 +1,12 @@
 # Online Python - IDE, Editor, Compiler, Interpreter
 from gestion import gestion_de_productos, registrar_venta
+import reportes
 
 valor_ex_1 = {"nombre": "producto 1",
               "precio" : 1000,
               "disponible" : 2,
               "minimo": 3,
-              "ventas":0
+              "ventas":1
               }
 
 valor_ex_2 = {"nombre": "producto 2",
@@ -21,6 +22,8 @@ registros = {
 }
 
 ventas_registradas = []
+
+ventas_registradas.append({'fecha': '2025-01-10', 'codigo': 1, 'unidades': 1})
 
 detalle_largo = {
     "codigo": 6,
@@ -62,6 +65,8 @@ def menu():
             control_stock()
         elif seleccion == "5":
             registrar_venta(registros, ventas_registradas)
+        elif seleccion == "6":
+            reportes.generar_reportes(registros, ventas_registradas)
         elif seleccion == "0":
             print("\nSaliendo")
             break
@@ -86,11 +91,6 @@ def lista_de_productos():
     print("Lista de productos")
     productos = listar_productos(registros)
     mostrar_productos(productos)
-    input("Presiona Enter para regresar al menú principal.")
-
-def generar_reporte():
-    print("Generar reporte")
-    print("Se mostrará el listado de reportes a generar.")
     input("Presiona Enter para regresar al menú principal.")
 
 def busqueda_de_productos():
